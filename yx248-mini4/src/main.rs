@@ -1,10 +1,10 @@
 use axum::{routing::get, Router};
-use yx248_mini4::price_filter;
+use yx248_indiv2::price_filter;
 
 //Root Route for Change Machine
 async fn root() -> &'static str {
     "
-    yx248-mini4
+    yx248-indiv2
 
     **Primary Route:**
     /pricefilter/low_price_bound/high_price_bound
