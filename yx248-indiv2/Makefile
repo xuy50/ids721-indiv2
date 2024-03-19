@@ -7,6 +7,9 @@ lint:
 test:
 	cargo test --quiet
 
+build:
+	cargo build --release
+
 run:
 	cargo run
 

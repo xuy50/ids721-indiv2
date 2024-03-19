@@ -2,10 +2,18 @@
 FROM rust:1.67 AS build
 WORKDIR /app
 COPY . .
+# Install rustfmt
+RUN rustup component add rustfmt
+# Install clippy
+RUN rustup component add clippy
+RUN make format
+RUN make lint
 # Run tests
-RUN cargo test --release
+RUN make test
 # Build application
-RUN cargo build --release
+RUN make build
+# Run service
+RUN make run
 
 # Distroless runtime stage
 FROM gcr.io/distroless/cc-debian11
