@@ -1,11 +1,16 @@
 # Build stage
-FROM rust:1.67 AS build
+FROM rust:1.77.1 AS build
 WORKDIR /app
 COPY . .
-# Install rustfmt
-RUN rustup component add rustfmt
-# Install clippy
-RUN rustup component add clippy
+
+# Install stable Rust and set as default
+RUN rustup install stable
+RUN rustup default stable
+
+# Install formatting and linting tools
+RUN rustup component add rustfmt clippy
+
+# Format, Lint, Test, Build
 RUN make format
 RUN make lint
 # Run tests
